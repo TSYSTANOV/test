@@ -1,13 +1,14 @@
-import { getInfoAboutVacancy } from "./getData.js"
+import { getInfoAboutVacancy } from "./getData.js";
 
-const ROOT_elem = document.querySelector('.result__list')
+const ROOT_elem = document.querySelector(".result__list");
 
+async function renderVacancies(data) {
+  ROOT_elem.innerHTML = "";
 
-function renderVacancies(data){
-  ROOT_elem.innerHTML = ''
+  let response = await data;
 
-  data.forEach((item)=>{
-    let li = document.createElement('li')
+  response.forEach((item) => {
+    let li = document.createElement("li");
     li.innerHTML = `
     <article class="vacancy">
                <h2 class="vacancy__title">
@@ -27,20 +28,19 @@ function renderVacancies(data){
                  <button class="vacancy__contacts">Показать контакты</button>
                </div>
              </article>
-    `
-    let a = document.createElement('a')
-    a.className = 'vacancy__response vacancy__open-modal'
-    a.dataset.vacancy = item.id
-    a.textContent = 'Откликнуться'
-    a.href = '#'
-    a.addEventListener('click',()=>{
-      event.preventDefault()
-      getInfoAboutVacancy(item.id)
-    })
-    li.querySelector('.vacancy__wrapper-btn').prepend(a)
-    ROOT_elem.append(li)
-  })
+    `;
+    let a = document.createElement("a");
+    a.className = "vacancy__response vacancy__open-modal";
+    a.dataset.vacancy = item.id;
+    a.textContent = "Откликнуться";
+    a.href = "#";
+    a.addEventListener("click", () => {
+      event.preventDefault();
+      getInfoAboutVacancy(item.id);
+    });
+    li.querySelector(".vacancy__wrapper-btn").prepend(a);
+    ROOT_elem.append(li);
+  });
 }
 
-
-export default renderVacancies
+export default renderVacancies;

@@ -1,17 +1,14 @@
-import { getData } from "./getData.js"
-import { headBtn } from "./headBtn.js"
-import { headChooseRegion } from "./headChooseRegion.js"
-import { searchVacancies } from "./searchVacancies.js"
+import filteredItemsForm from "./filteredForm.js";
+import { getData } from "./getData.js";
+import { headBtn } from "./headBtn.js";
+import { headChooseRegion } from "./headChooseRegion.js";
+import { searchVacancies } from "./searchVacancies.js";
 
-let dataVacancies = []
+function init() {
+  headBtn();
 
-
-function init(){
-  headBtn()
-  // headChooseRegion()
-  getData()
-  searchVacancies()
+  getData();
+  searchVacancies();
+  filteredItemsForm();
 }
-init()
-
-export default dataVacancies
+init();
